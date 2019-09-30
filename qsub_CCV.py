@@ -7,7 +7,7 @@ bash_script = '''#!/bin/bash
 #SBATCH -t 48:00:00
 source ~/anaconda3/bin/activate pyt3
 echo "prog started at: $(date)"
-cd ~/continuous_q_learning
+cd ~/sparse_reward_experiment
 python Q_wire_class.py {} {}
 '''
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH/home/kasadiat/.mujoco/mujoco200/bin
