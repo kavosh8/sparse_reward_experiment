@@ -1,0 +1,13 @@
+env_name,LunarLanderNoShape0.0-v0,string
+max_episode,1000,integer
+num_layers,3,integer
+layer_size,512,integer
+learning_rate,0.0005,float
+target_network_learning_rate,0.005,float
+target_network_period,1,integer
+max_buffer_size, 2000000,integer
+gamma,0.99,float
+batch_size,256,integer
+reward_clip,20,float
+opt,rmsprop,string
+updates_per_episode,100,integer
