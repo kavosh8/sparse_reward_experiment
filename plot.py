@@ -24,10 +24,10 @@ def smooth(li):
 problems_name=['Pendulum','LunarLander','Bipedal','Ant','Cheetah',
 			   'Hopper','InvertedDoublePendulum','InvertedPendulum',
 			   'Reacher','Swimmer','Walker2d']
-for problem in range(8):
+for problem in range(1,2):
 	plt.subplot(4,2,problem+1)
 	print(problems_name[problem])
-	for setting in [0]:
+	for setting in range(8,11):
 		hyper_parameter_name=10*problem+setting
 		acceptable_len=00
 		li=[]
@@ -36,7 +36,7 @@ for problem in range(8):
 				temp=numpy.loadtxt("q_learning_results/"+str(hyper_parameter_name)+"/"+str(seed_num)+".txt")
 				#print(hyper_parameter_name,numpy.mean(temp[-10:]),len(temp))
 				#plt.plot(temp)
-				if len(temp)>acceptable_len:
+				if len(temp)>acceptable_len and temp[-1]>0:
 					li.append(temp)
 					#plt.plot(temp)
 					#print(hyper_parameter_name,seed_num,numpy.mean(temp[-10:]),len(temp))
