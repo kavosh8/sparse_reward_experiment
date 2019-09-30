@@ -7,7 +7,7 @@ for k in numpy.arange(0,1.01,0.1):
 	register(
 	    id='LunarLanderNoShape'+str(k_round)+'-v0',
 	    entry_point='lunar_lander_no_shape.LunarLanderNoShape:NewLunarEnv',
-	    max_episode_steps=200,
+	    max_episode_steps=1000,
 	    kwargs={
 	        'prob_of_shape': k
 

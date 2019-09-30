@@ -184,6 +184,7 @@ if __name__=='__main__':
 	params=utils_for_q_learning.get_hyper_parameters(hyper_parameter_name)
 	params['hyper_parameters_name']=hyper_parameter_name
 	env=gym.make(params['env_name'])
+	env_test=gym.make("LunarLanderNoShape0.0-v0")
 	params['env']=env
 	params['seed_number']=int(sys.argv[2])
 	try:
@@ -210,10 +211,11 @@ if __name__=='__main__':
 			Q_object.update()
 
 		#test learned policy
-		s,t,G,done=env.reset(),0,0,False
+		s,t,G,done=env_test.reset(),0,0,False
 		while done==False:
 			a=Q_object.e_greedy_policy(s,episode+1,'test')
-			sp,r,done,_=env.step(numpy.array(a))
+			sp,r,done,_=env_test.step(numpy.array(a))
+			#env.render()
 			s,t,G=sp,t+1,G+r
 		print("in episode {} we collected return {} in {} timesteps".format(episode,G,t))
 		G_li.append(G)
