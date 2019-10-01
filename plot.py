@@ -25,13 +25,13 @@ problems_name=['Pendulum','LunarLander','Bipedal','Ant','Cheetah',
 			   'Hopper','InvertedDoublePendulum','InvertedPendulum',
 			   'Reacher','Swimmer','Walker2d']
 for problem in range(1,2):
-	plt.subplot(4,2,problem+1)
+	plt.subplot(1,2,1)
 	print(problems_name[problem])
 	for setting in range(11):
 		hyper_parameter_name=10*problem+setting
 		acceptable_len=00
 		li=[]
-		for seed_num in range(10):
+		for seed_num in range(20):
 			try:
 				temp=numpy.loadtxt("q_learning_results/"+str(hyper_parameter_name)+"/"+str(seed_num)+".txt")
 				#print(hyper_parameter_name,numpy.mean(temp[-10:]),len(temp))
@@ -51,7 +51,44 @@ for problem in range(1,2):
 			numpy.mean(numpy.mean(li,axis=0)[-10:]))
 		plt.plot(smooth(numpy.mean(li,axis=0)),label=hyper_parameter_name,lw=3)
 		#plt.ylim([0,5000])
-	plt.title(problems_name[problem])
+	plt.title("Q learning")
+	plt.legend()
+plt.subplots_adjust(wspace=0.5,hspace = 1)
+
+
+
+
+problems_name=['Pendulum','LunarLander','Bipedal','Ant','Cheetah',
+			   'Hopper','InvertedDoublePendulum','InvertedPendulum',
+			   'Reacher','Swimmer','Walker2d']
+for problem in range(3,4):
+	plt.subplot(1,2,2)
+	print(problems_name[problem])
+	for setting in range(11):
+		hyper_parameter_name=10*problem+setting
+		acceptable_len=00
+		li=[]
+		for seed_num in range(5):
+			try:
+				temp=numpy.loadtxt("ddpg_results/"+str(hyper_parameter_name)+"/"+str(seed_num)+".txt")
+				#print(hyper_parameter_name,numpy.mean(temp[-10:]),len(temp))
+				#plt.plot(temp)
+				if len(temp)>acceptable_len:
+					li.append(temp)
+					#plt.plot(temp)
+					#print(hyper_parameter_name,seed_num,numpy.mean(temp[-10:]),len(temp))
+			except:
+				print("problem")
+				pass
+		#print([len(x) for x in li])
+		li=truncate(li)
+		print(hyper_parameter_name,
+			numpy.mean(li),len(li),
+			len(li[0]),
+			numpy.mean(numpy.mean(li,axis=0)[-10:]))
+		plt.plot(smooth(numpy.mean(li,axis=0)),label=hyper_parameter_name,lw=3)
+		#plt.ylim([0,5000])
+	plt.title("ddpg")
 	plt.legend()
 plt.subplots_adjust(wspace=0.5,hspace = 1)
 plt.show()

@@ -19,6 +19,7 @@ if __name__=='__main__':
 	params=utils.get_hyper_parameters(hyper_parameter_name)
 	params['hyper_parameters_name']=hyper_parameter_name
 	env=gym.make(params['env_name'])
+	env_test=gym.make("LunarLanderNoShape0.0-v0")
 	params['env']=env
 	params['seed_number']=int(sys.argv[2])
 	try:
@@ -54,14 +55,14 @@ if __name__=='__main__':
 
 
 		#now test the learned policy
-		s=env.reset()
+		s=env_test.reset()
 		t=0
 		G=0
 		done=False
 		while done==False:
 			a=agent.actor_object.action_selection(s,train_or_test='test')
 			#print(a)
-			sp,r,done,_=env.step(numpy.array(a))
+			sp,r,done,_=env_test.step(numpy.array(a))
 			agent.buffer_object.append(s,a,r,done,sp)
 			s=sp
 			t=t+1
