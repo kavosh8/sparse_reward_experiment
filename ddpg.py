@@ -63,7 +63,7 @@ if __name__=='__main__':
 			a=agent.actor_object.action_selection(s,train_or_test='test')
 			#print(a)
 			sp,r,done,_=env_test.step(numpy.array(a))
-			agent.buffer_object.append(s,a,r,done,sp)
+			#agent.buffer_object.append(s,a,r,done,sp)
 			s=sp
 			t=t+1
 			G=G+r
